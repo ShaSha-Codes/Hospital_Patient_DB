@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const conn_str = "mongodb://admin:admin@cluster0-shard-00-00.06prr.mongodb.net:27017,cluster0-shard-00-01.06prr.mongodb.net:27017,cluster0-shard-00-02.06prr.mongodb.net:27017/tcet?ssl=true&replicaSet=atlas-j94tl3-shard-0&authSource=admin&retryWrites=true&w=majority";
+const conn_str ="mongodb://root:root@cluster0-shard-00-00.exjjz.mongodb.net:27017,cluster0-shard-00-01.exjjz.mongodb.net:27017,cluster0-shard-00-02.exjjz.mongodb.net:27017/Hospital?ssl=true&replicaSet=atlas-2ymy0u-shard-0&authSource=admin&retryWrites=true&w=majority";
 
 
 mongoose.connect(conn_str, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -8,17 +8,16 @@ mongoose.connect(conn_str, { useNewUrlParser: true, useUnifiedTopology: true })
 	.catch( (error) => console.log(error) );
 	
 	
-const userSchema = new mongoose.Schema({
+const patientSchema = new mongoose.Schema({
 	first_name: String,
 	last_name: String,
 	service: String,
     phone_number: Number,
     date:Date,
-    message: String
+    message: String,
+    status:String
 })
 
-//Step 3: Create collection Object (model)
-// MAPPING 
-const userObject = new mongoose.model("users", userSchema);
+const patientObject = new mongoose.model("patients", patientSchema);
 
-exports.User = userObject;
+exports.Patient = patientObject;
