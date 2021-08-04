@@ -5,11 +5,18 @@ const bodyParser=require('body-parser');
 const patient_model = require("./patient_module");
 const Patient = patient_model.Patient;
 const nanoid=require("nanoid");
+const mongo = require('mongodb');
 app.use(express.json());
 var urlencodedParser=bodyParser.urlencoded({extended:false});
 
 app.set('view engine','ejs');
 
+app.post("/track/data",urlencodedParser, async (req, res) => {
+	console.log(req.body.id);
+	var o_id = new mongo.ObjectId(req.body.id);
+	let data = await Patient.find({"_id":o_id});
+	res.render(data);
+});
 
 app.post("/patient",urlencodedParser, async (req, res) => {
 	console.log(req.body)
