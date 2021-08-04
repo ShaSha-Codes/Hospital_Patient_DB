@@ -11,7 +11,6 @@ var urlencodedParser=bodyParser.urlencoded({extended:false});
 app.set('view engine','ejs');
 
 
-
 app.post("/patient",urlencodedParser, async (req, res) => {
 	console.log(req.body)
 	let p = await Patient(req.body);
