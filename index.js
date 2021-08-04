@@ -11,11 +11,11 @@ var urlencodedParser=bodyParser.urlencoded({extended:false});
 
 app.set('view engine','ejs');
 
-app.post("/track/data",urlencodedParser, async (req, res) => {
+app.post("/data",urlencodedParser, async (req, res) => {
 	console.log(req.body.id);
 	var o_id = new mongo.ObjectId(req.body.id);
 	let data = await Patient.find({"_id":o_id});
-	res.render(data);
+	res.render('data',{data:data});
 });
 
 app.post("/patient",urlencodedParser, async (req, res) => {
