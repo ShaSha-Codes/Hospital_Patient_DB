@@ -6,21 +6,22 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Medic!</title>
-        
-        
+
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-       
+
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-       
+
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <style>
         .footer {
           
+          left: 0;
+          bottom: 0;
           width: 100%;
-         
+          background-color: red;
           color: white;
           text-align: center;
         }
@@ -33,7 +34,7 @@
         }
         </style>
     <body>
-       
+
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="#!">Medic!</a>
@@ -44,42 +45,59 @@
                 
             </div>
         </nav>
+
+
+
+
+
+
         <div class="container">
-
-
-
-            <div class="card mx-auto my-5" style="width: 25rem;">
-                <div class="card-body">
-                  <h5 class="card-title">Appointment Details</h5>
-                  
-                  <p class="card-text">First Name: <%=data[0].first_name%></p>
-                  <p class="card-text">Last Name: <%=data[0].last_name%></p>
-                  <p class="card-text">Service: <%=data[0].service%></p>
-                  <p class="card-text">Phone Number: <%=data[0].phone_number%></p>
-                  <p class="card-text">Date: <%=data[0].date%></p>
-                  <p class="card-text">Message: <%=data[0].message%></p>
-                  <p class="card-text">Status: <%=data[0].status%></p>
-
-                  <form method="post" action="/delete">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Service</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Functions</th>
+                    </tr>
+                </thead>
+                <tbody>
                     
-                    <button class="btn btn-danger btn ms-auto " name="id" value=<%=data[0].id%> type="submit">
-                        Delete Appointment</button>
-                  </form>
-                  
-									
-                  
-                </div>
-              </div>
+                    <% for(var i=0; i < data.length; i++) { %>
+                        <tr>
+                            <td><%= data[i]._id %></td>
+                            <td><%= data[i].first_name %></td>
+                            <td><%= data[i].last_name %></td>
+                            <td><%= data[i].service %></td>
+                            <td><%= data[i].status %></td>
+                            <td><form method="post" action="/approve">
+                                    <button class="btn btn-success btn ms-auto " name="id" value=<%=data[i].id%> type="submit">
+                                        Approve
+                                    </button>
+                                </form>
+                              <br>
+                                <form method="post" action="/decline">
+                                    <button class="btn btn-danger btn ms-auto " name="id" value=<%=data[i].id%> type="submit">
+                                         Decline
+                                    </button>
+                                </form>
+                              </td>
+                        </tr>
+                        <% } %>
+                    
+                    
+                </tbody>
+            </table>
            
-
-
-
-
-
-
-
-
         </div>
+
+
+
+
+
+
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
@@ -99,9 +117,9 @@
                 </div>
             </div>
         </footer>
-       
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-      
+
         <script src="js/scripts.js"></script>
         
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
