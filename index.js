@@ -37,6 +37,7 @@ app.post("/approve",urlencodedParser, async (req, res) => {
 });
 
 
+
 app.post("/decline",urlencodedParser, async (req, res) => {
 		
 	let u_data = await Patient.updateOne({"_id": req.body.id}, {
@@ -59,6 +60,7 @@ app.get("/test.ejs",async (req, res)=>{
 });
 
 
+
 app.post("/data",urlencodedParser, async (req, res) => {
 	console.log(req.body.id);
 	try {
@@ -68,7 +70,7 @@ app.post("/data",urlencodedParser, async (req, res) => {
 		res.render('data',{data:data});
 	}
 	catch (err) {
-		res.send("<h1>Error</h1>")
+		res.render('404');
 	}
 });
 
@@ -76,11 +78,14 @@ app.post("/patient",urlencodedParser, async (req, res) => {
 	console.log(req.body)
 	let p = await Patient(req.body);
 	console.log(p);
+	p.status="Pending"
 	let result = p.save();
+	
 	res.render('patient',{id:p.id});
 	
 });
 app.use(express.static(path.join(__dirname,"public"),{extensions:["html"]}));
+
 
 PORT=process.env.PORT || 5000;
 app.listen(PORT,()=>console.log(`Running on port ${PORT}`));
