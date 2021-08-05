@@ -4,11 +4,14 @@ const app=express();
 const bodyParser=require('body-parser');
 const patient_model = require("./patient_module");
 const Patient = patient_model.Patient;
+const adminmod = patient_model.Admin;
+
 const nanoid=require("nanoid");
 const mongo = require('mongodb');
 app.use(express.json());
 var urlencodedParser=bodyParser.urlencoded({extended:false});
-
+var usercorrect=0;
+var loginFlag=0;
 app.set('view engine','ejs');
 
 
@@ -80,12 +83,68 @@ app.post("/patient",urlencodedParser, async (req, res) => {
 	console.log(p);
 	p.status="Pending"
 	let result = p.save();
-	
 	res.render('patient',{id:p.id});
 	
 });
 app.use(express.static(path.join(__dirname,"public"),{extensions:["html"]}));
 
+
+
+app.get("/views/admin.ejs",async (req, res)=>{
+	res.render('admin.ejs',{msg:""});
+})
+
+app.post("/admin.ejs",urlencodedParser, async (req,res)=>{
+    console.log(req.body.useremail,req.body.pass)
+
+
+    try{
+        adminmod.find({},(err,data)=>{
+            console.log(data,"h")
+        })
+       const email=await adminmod.findOne({useremail:req.body.useremail}).catch(()=>{
+       });
+       console.log(email.password,"hii")
+       console.log("entered email",req.body.useremail,"entered")
+       let checkpass= email.password==req.body.pass;
+       console
+       if (checkpass){
+            console.log('u haved logged in')
+            loginFlag=1
+
+            // res.render('libraryuser.ejs')
+            // res.render("login.ejs")
+            // books.find({},(err,data)=>{
+            //     if (err){
+            //         console.log(err)
+            //     }
+            //     else{
+            //         console.log(data)
+            //         res.render("libraryuser.ejs",{datas:data})
+            //     }
+            // })
+            let data = await Patient.find();
+			res.render('test',{data:data});
+
+       }
+       else if (req.body.useremail==email.useremail){
+        usercorrect=1
+       }
+
+        }
+        catch(e){
+
+            res.render('Admin',{msg:"User does not exist"})
+
+        }
+
+    if (usercorrect==1){
+        usercorrect=0;
+        res.render('admin',{msg:"password incorrect"})
+
+    }
+
+})
 
 PORT=process.env.PORT || 5000;
 app.listen(PORT,()=>console.log(`Running on port ${PORT}`));

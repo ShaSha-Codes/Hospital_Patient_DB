@@ -17,7 +17,14 @@ const patientSchema = new mongoose.Schema({
     message: String,
     status:String
 })
+	
+const adminSchema = new mongoose.Schema({
+	useremail: String,
+	password: String
+})
 
+const adminObject = new mongoose.model("admin", adminSchema);
 const patientObject = new mongoose.model("patients", patientSchema);
 
 exports.Patient = patientObject;
+exports.Admin=adminObject;
