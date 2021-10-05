@@ -1,110 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Medic!</title>
-        
-        
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
-       
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
-       
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <style>
-        .footer {
-          
-          width: 100%;
-         
-          color: white;
-          text-align: center;
-        }
-        .myh2 {
-            position: fixed;
-            top: 40%;
-            left: 30%;
-            margin-top: -50px;
-            margin-left: -50px;
-        }
-        </style>
-    <body>
-       
-        <nav class="navbar navbar-light bg-light static-top">
-            <div class="container">
-                <a class="navbar-brand" href="#!">Medic!</a>
-                <div>
-                    <a class="btn btn-primary" href="track">Track Status</a>
-                    <a class="btn btn-primary" href="../views/admin.ejs">Admin</a>
-                </div>
-                
-            </div>
-        </nav>
-        <div class="container">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Medic!</title>
 
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-            <div class="card mx-auto my-5" style="width: 25rem;">
-                <div class="card-body">
-                  <h5 class="card-title">Appointment Details</h5>
-                  
-                  <p class="card-text">First Name: <%=data[0].first_name%></p>
-                  <p class="card-text">Last Name: <%=data[0].last_name%></p>
-                  <p class="card-text">Service: <%=data[0].service%></p>
-                  <p class="card-text">Phone Number: <%=data[0].phone_number%></p>
-                  <p class="card-text">Date: <%=data[0].date%></p>
-                  <p class="card-text">Message: <%=data[0].message%></p>
-                  <p class="card-text">Status: <%=data[0].status%></p>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-                  <form method="post" action="/delete">
-                    
-                    <button class="btn btn-danger btn ms-auto " name="id" value=<%=data[0].id%> type="submit">
-                        Delete Appointment</button>
-                  </form>
-                  
-									
-                  
-                </div>
-              </div>
-           
+    <link href="css/styles.css" rel="stylesheet" />
+  </head>
+  <style>
+    .footer {
+      width: 100%;
 
-
-
-
-
-
-
-
+      color: white;
+      text-align: center;
+    }
+    .myh2 {
+      position: fixed;
+      top: 40%;
+      left: 30%;
+      margin-top: -50px;
+      margin-left: -50px;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-light bg-light static-top">
+      <div class="container">
+        <a class="navbar-brand" href="/"
+          ><img src="/assets/doctor.png" height="40px" width="40px" />
+          EZ-APPOINT</a
+        >
+        <div>
+          <a class="btn btn-primary" href="track">Track Status</a>
+          <a class="btn btn-primary" href="../views/admin.ejs">Admin</a>
         </div>
-        <footer class="footer bg-light">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                        </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2021. All Rights Reserved.</p>
-                    </div>
-                   
-                </div>
-            </div>
-        </footer>
-       
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-      
-        <script src="js/scripts.js"></script>
-        
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-        <script src="https://kit.fontawesome.com/f51f107350.js" crossorigin="anonymous"></script>
-    </body>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="card mx-auto my-5" style="width: 25rem">
+        <div class="card-body">
+          <h5 class="card-title">Appointment Details</h5>
+
+          <p class="card-text">First Name: <%=data[0].first_name%></p>
+          <p class="card-text">Last Name: <%=data[0].last_name%></p>
+          <p class="card-text">Service: <%=data[0].service%></p>
+          <p class="card-text">Phone Number: <%=data[0].phone_number%></p>
+          <p class="card-text">Date: <%=data[0].date%></p>
+          <p class="card-text">Message: <%=data[0].message%></p>
+          <p class="card-text">Status: <%=data[0].status%></p>
+
+          <form method="post" action="/delete">
+            <button
+              class="btn btn-danger btn ms-auto"
+              name="id"
+              value="<%"
+              ="data[0].id%"
+            >
+              type="submit"> Delete Appointment
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <footer class="footer bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+            <ul class="list-inline mb-2">
+              <li class="list-inline-item"><a href="#!">About</a></li>
+              <li class="list-inline-item">⋅</li>
+              <li class="list-inline-item"><a href="#!">Contact</a></li>
+              <li class="list-inline-item">⋅</li>
+              <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+              <li class="list-inline-item">⋅</li>
+              <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+            </ul>
+            <p class="text-muted small mb-4 mb-lg-0">
+              &copy; Your Website 2021. All Rights Reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/scripts.js"></script>
+
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f51f107350.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

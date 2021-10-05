@@ -15,13 +15,20 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&display=swap");
+            .navbar-brand {
+              font-family: "Open Sans", sans-serif;
+            }
+          </style>
+        </head>
+        <body>
+          <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
-                <a class="navbar-brand" href="#!">Medic!</a>
-                <div>
+              <a class="navbar-brand" href="/"
+                ><img src="/assets/doctor.png" height="40px" width="40px" />
+                EZ-APPOINT</a  >
+              <div>
                     <a class="btn btn-primary" href="track">Track Status</a>
                     <a class="btn btn-primary" href="../views/admin.ejs">Admin</a>
                 </div>
@@ -31,16 +38,16 @@
         <div class="container">
             <div class="row">
                 <div class="col m-5">
-                    <form action="/patient" method="POST">
+                    <form action="/patient" method="POST" enctype="multipart/form-data">
                         <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="fname">First Name:</label>
-                            <input type="text" class="form-control" id="fname" placeholder="First Name" name="first_name" required>
+                            <label for="first_name">First Name:</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="First Name" name="first_name" required>
                         </div>
                         <br>
                         <div class="form-group col-md-6">
-                            <label for="lname">Last Name:</label>
-                            <input type="text" class="form-control" id="lname" placeholder="Last Name" name="last_name" required>
+                            <label for="last_name">Last Name:</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name" required>
                         </div>
                         <br>
                         <div class="form-group col-md-4">
@@ -56,8 +63,8 @@
                         <br>
                         </div>
                         <div class="form-group col-md-4">
-                        <label for="pnum">Phone Number</label>
-                        <input type="number" class="form-control" id="pnum" placeholder="Phone Number" name="phone_number" required>
+                        <label for="phone_number">Phone Number</label>
+                        <input type="number" class="form-control" id="phone_number" placeholder="Phone Number" name="phone_number" required>
                         </div>
                         <br>
                         <div class="form-group col-md-3">
@@ -70,6 +77,14 @@
                             <label for="message">Message</label>
                             <input type="text" class="form-control" id="message" name="message" required>
                         </div>
+                        <br>
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="image">Upload Referral (if any) &nbsp; </label>
+                            <input type="file" id="image" class="form-control"
+                                   name="image" value="" >
+                        </div>
+                    </div>
                         <br>
                         <button type="submit" class="btn btn-primary">Make an Appointment</button>
                     </form>
