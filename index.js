@@ -146,7 +146,7 @@ app.post("/admin.ejs", urlencodedParser, async (req, res) => {
       //     }
       // })
       let data = await Patient.find();
-      res.render("appointment", { data: data });
+      res.render("test", { data: data });
     } else if (req.body.useremail == email.useremail) {
       usercorrect = 1;
     }
