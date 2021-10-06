@@ -27,13 +27,9 @@
     <link href="css/styles.css" rel="stylesheet" />
   </head>
   <style>
-    .footer {
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      background-color: red;
-      color: white;
-      text-align: center;
+    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&display=swap");
+    .navbar-brand {
+      font-family: "Open Sans", sans-serif;
     }
     .myh2 {
       position: fixed;
@@ -42,10 +38,14 @@
       margin-top: -50px;
       margin-left: -50px;
     }
-    @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&display=swap");
-    .navbar-brand {
-      font-family: "Open Sans", sans-serif;
-    }
+    .footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
   </style>
   <body>
     <nav class="navbar navbar-light bg-light static-top">
@@ -71,6 +71,7 @@
             <th scope="col">Service</th>
             <th scope="col">Status</th>
             <th scope="col">Image</th>
+            <th scope="col">Message</th>
             <th scope="col">Functions</th>
           </tr>
         </thead>
@@ -92,6 +93,7 @@
                 Open</button
               ><%}%>
             </td>
+            <td><%= data[i].message %></td>
             <td>
               <form method="post" action="/approve">
                 <button
@@ -120,6 +122,7 @@
 
 <div class="container">
     <footer class="footer bg-light">
+      <div class="container">
         <div class="row">
           <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
             <ul class="list-inline mb-2">
@@ -136,6 +139,7 @@
             </p>
           </div>
         </div>
+      </div>
     </footer>
   </div>
 
