@@ -15,6 +15,7 @@ const patientSchema = new mongoose.Schema({
   phone_number: Number,
   date: Date,
   message: String,
+  email:String,
   img: {
     data: Buffer,
     contentType: String,

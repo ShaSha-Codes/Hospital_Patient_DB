@@ -24,7 +24,7 @@
       type="text/css"
     />
 
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../../css/styles.css" rel="stylesheet" />
   </head>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,700&display=swap");
@@ -46,6 +46,11 @@
   color: white;
   text-align: center;
 }
+.right-go{
+
+  position: relative;
+  right: 0px;
+}
   </style>
   <body>
     <nav class="navbar navbar-light bg-light static-top">
@@ -56,14 +61,45 @@
         >
         <div>
           <a class="btn btn-primary" href="/">Home</a>
+          <a class="btn btn-primary" href="/logout">Logout</a>
         </div>
       </div>
     </nav>
 
+
+
+
+
+
+
+
     <div class="container">
-      <div class="table-responsive">
-      <table class="table">
-        <thead class="thead-dark">
+      
+        
+      
+        
+          <div class="dropdown my-5 ms-auto right-go">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" style="min-width:15rem;" data-bs-toggle="dropdown" aria-expanded="false">
+              Filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2"  style="min-width:15rem;">
+              <li><a class="dropdown-item" type="button" href="/admin/table/0">All</a></li>
+              <li><a class="dropdown-item" type="button" href="/admin/table/1">Pending</a></li>
+              <li><a class="dropdown-item" type="button" href="/admin/table/2">Accepted</a></li>
+              <li><a class="dropdown-item" type="button" href="/admin/table/3">Deleted</a></li>
+            </ul>
+          </div>
+
+
+ 
+     
+
+      
+      <%if (dataP!=""){%>
+      <div class="table-responsive my-5">
+        <h2>Pending Table</h2>
+      <table class="table table-hover">
+        <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
@@ -76,30 +112,31 @@
           </tr>
         </thead>
         <tbody>
-          <% for(var i=0; i < data.length; i++) { %>
+          <% for(var i=0; i < dataP.length; i++) { %>
+            
           <tr>
-            <td><%= data[i]._id %></td>
-            <td><%= data[i].first_name %></td>
-            <td><%= data[i].last_name %></td>
-            <td><%= data[i].service %></td>
-            <td><%= data[i].status %></td>
+            <td><%= dataP[i]._id %></td>
+            <td><%= dataP[i].first_name %></td>
+            <td><%= dataP[i].last_name %></td>
+            <td><%= dataP[i].service %></td>
+            <td><%= dataP[i].status %></td>
             <td>
-              <% if(data[i].img.contentType==undefined){%> No Data
+              <% if(dataP[i].img.contentType==undefined){%> No Data
               <%}else{%><button
                 type="button"
                 class="btn btn-dark"
-                onClick="view('data:image/<%=data[i].img.contentType%>;base64,<%=data[i].img.data.toString('base64')%>');"
+                onClick="view('data:image/<%=dataP[i].img.contentType%>;base64,<%=dataP[i].img.data.toString('base64')%>');"
               >
                 Open</button
               ><%}%>
             </td>
-            <td><%= data[i].message %></td>
+            <td><%= dataP[i].message %></td>
             <td>
               <form method="post" action="/approve">
                 <button
                   class="btn btn-success btn ms-auto"
                   name="id"
-                  value=<%=data[i].id%>
+                  value=<%=dataP[i].id%>
                   type="submit"> Approve
                 </button>
               </form>
@@ -108,7 +145,7 @@
                 <button
                   class="btn btn-danger btn ms-auto"
                   name="id"
-                  value=<%=data[i].id%>
+                  value=<%=dataP[i].id%>
                   type="submit"> Decline
                 </button>
               </form>
@@ -118,9 +155,151 @@
         </tbody>
       </table>
     </div>
+    <%}%>
+    <%if (dataA!=""){%>
+    <div class="table-responsive my-5">
+      <h2>Approved Table</h2>
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">First</th>
+          <th scope="col">Last</th>
+          <th scope="col">Service</th>
+          <th scope="col">Status</th>
+          <th scope="col">Image</th>
+          <th scope="col">Message</th>
+          <th scope="col">Functions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i < dataA.length; i++) { %>
+          
+        <tr>
+          <td><%= dataA[i]._id %></td>
+          <td><%= dataA[i].first_name %></td>
+          <td><%= dataA[i].last_name %></td>
+          <td><%= dataA[i].service %></td>
+          <td><%= dataA[i].status %></td>
+          <td>
+            <% if(dataA[i].img.contentType==undefined){%> No Data
+            <%}else{%><button
+              type="button"
+              class="btn btn-dark"
+              onClick="view('data:image/<%=dataA[i].img.contentType%>;base64,<%=dataA[i].img.data.toString('base64')%>');"
+            >
+              Open</button
+            ><%}%>
+          </td>
+          <td><%= dataA[i].message %></td>
+          <td>
+            <form method="post" action="/approve">
+              <button
+                class="btn btn-success btn ms-auto"
+                name="id"
+                value=<%=dataA[i].id%>
+                type="submit"> Approve
+              </button>
+            </form>
+            <br />
+            <form method="post" action="/decline">
+              <button
+                class="btn btn-danger btn ms-auto"
+                name="id"
+                value=<%=dataA[i].id%>
+                type="submit"> Decline
+              </button>
+            </form>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <%}%>
+
+  <%if (dataD!=""){%>
+  <div class="table-responsive my-5">
+    <h2>Declined Table</h2>
+  <table class="table table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Service</th>
+        <th scope="col">Status</th>
+        <th scope="col">Image</th>
+        <th scope="col">Message</th>
+        <th scope="col">Functions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for(var i=0; i < dataD.length; i++) { %>
+        
+      <tr>
+        <td><%= dataD[i]._id %></td>
+        <td><%= dataD[i].first_name %></td>
+        <td><%= dataD[i].last_name %></td>
+        <td><%= dataD[i].service %></td>
+        <td><%= dataD[i].status %></td>
+        <td>
+          <% if(dataD[i].img.contentType==undefined){%> No Data
+          <%}else{%><button
+            type="button"
+            class="btn btn-dark"
+            onClick="view('data:image/<%=dataD[i].img.contentType%>;base64,<%=dataD[i].img.data.toString('base64')%>');"
+          >
+            Open</button
+          ><%}%>
+        </td>
+        <td><%= dataD[i].message %></td>
+        <td>
+          <form method="post" action="/approve">
+            <button
+              class="btn btn-success btn ms-auto"
+              name="id"
+              value=<%=dataD[i].id%>
+              type="submit"> Approve
+            </button>
+          </form>
+          <br />
+          <form method="post" action="/decline">
+            <button
+              class="btn btn-danger btn ms-auto"
+              name="id"
+              value=<%=dataD[i].id%>
+              type="submit"> Decline
+            </button>
+          </form>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+<%}%>
+
+
+
     </div>
 
-<div class="container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
     <footer class="footer bg-light">
       <div class="container">
         <div class="row">
@@ -141,7 +320,7 @@
         </div>
       </div>
     </footer>
-  </div>
+  </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>

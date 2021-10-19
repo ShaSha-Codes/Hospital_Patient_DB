@@ -61,9 +61,25 @@
     </nav>
 
     <div class="container">
+
+     <form action="/schedule" method="POST" class="col-md-3 my-5">
+      <label for="date">Date</label>
+      <div class="input-group mb-3 col-6">
+        <input type="date" class="form-control" id="date" name="date" required> 
+        <div class="input-group-append">
+          <button type="submit" class="btn btn-outline-secondary" type="button" id="button-addon2">Filter</button>
+        </div>
+      </div>
+     </form>
+
+
+
+
+
     <div class="table-responsive">
+      <h2>Appointments for <%=date%></h2>
       <table class="table">
-        <thead class="thead-dark">
+        <thead class="table-dark">
           <tr>
             <th scope="col">#</th>
             <th scope="col">First</th>
@@ -100,7 +116,7 @@
     </div>
     </div>
     <div class="container">
-    <footer class="footer bg-light">
+    <!-- <footer class="footer bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
@@ -119,7 +135,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/scripts.js"></script>
